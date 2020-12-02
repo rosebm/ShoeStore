@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Shoe Store Inventory</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="sign_in_btn_text">Sign in</string>
+    <string name="register_btn_text">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="welcome_btn_text">Go to Instructions</string>
+    <string name="instruction_btn_text">Let me see the shoes!</string>
+    <string name="shoe_detail_title">Shoe Detail</string>
+    <string name="shoe_name">Shoe name:</string>
+    <string name="company">Company:</string>
+    <string name="size">Size:</string>
+    <string name="description">Description:</string>
+    <string name="save_btn_text">Save</string>
+    <string name="cancel_btn_text">Cancel</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="instructions_title_text">Instructions</string>
+    <string name="instruction_description_text">This page will take you to the list of shoes that we have available! You can also create and add new items and list them</string>
+    <string name="shoe_list_title_text">Shoe List</string>
+    <string name="welcome_title_text">Shoeland</string>
+    <string name="welcome_description_text">Welcome to Shoeland! here you can add and consult a list of shoes</string>
+    <string name="welcome_image_description">image containing shoes</string>
+</resources>

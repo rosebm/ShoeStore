@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_graph"
+    app:startDestination="@+id/WelcomeFragment">
+
+    <fragment
+        android:id="@+id/WelcomeFragment"
+        android:label="Welcome"
+        android:name="com.rosalynbm.shoestoreinventory.ui.WelcomeFragment"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_WelcomeFragment_to_InstructionFragment"
+            app:destination="@id/InstructionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/InstructionFragment"
+        android:label="Instruction"
+        android:name="com.rosalynbm.shoestoreinventory.ui.InstructionFragment"
+        tools:layout="@layout/fragment_instruction">
+        <action
+            android:id="@+id/action_InstructionFragment_to_ShoeListFragment"
+            app:destination="@id/ShoeListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ShoeListFragment"
+        android:label="Shoes"
+        android:name="com.rosalynbm.shoestoreinventory.ui.ShoeListFragment"
+        tools:layout="@layout/fragment_shoe_list">
+        <action
+            android:id="@+id/action_ShoeListFragment_to_ShoeDetailFragment"
+            app:destination="@id/ShoeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ShoeDetailFragment"
+        android:label="Shoe Detail"
+        android:name="com.rosalynbm.shoestoreinventory.ui.ShoeDetailFragment"
+        tools:layout="@layout/fragment_shoe_detail">
+        <action
+            android:id="@+id/action_ShoeDetailFragment_to_ShoeListFragment"
+            app:destination="@id/ShoeListFragment"
+            app:popUpTo="@id/ShoeListFragment"/>
+    </fragment>
+
+</navigation>
