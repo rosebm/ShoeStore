@@ -22,3 +22,7 @@ Deliverables for this project.
 4. Shoe Listing screen: at first, the list will be empty, items must be added on the Shoe Detail Screen
 5. Shoe Detail screen for adding a new shoe
 
+## Sources
+
+1. Images from dsw.com, https://www.dailymail.co.uk/https://www.dailymail.co.uk/health/article-4957232/Why-not-wear-high-heels-work-out.html
+
