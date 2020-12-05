@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rosalynbm.shoestoreinventory.R
 import com.rosalynbm.shoestoreinventory.models.Shoe
 import kotlinx.android.synthetic.main.shoe_item_layout.view.*
-import timber.log.Timber
 
 class ShoeListAdapter(private val listener: ListItemClickListener<Shoe>):
     ListAdapter<Shoe, ShoeListAdapter.ShoeListViewHolder>(DIFF_CALLBACK) {

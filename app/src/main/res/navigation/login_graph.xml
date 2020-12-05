@@ -3,7 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_graph"
-    app:startDestination="@+id/WelcomeFragment">
+    app:startDestination="@+id/LoginFragment">
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:label="Login"
+        android:name="com.rosalynbm.shoestoreinventory.ui.LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_LoginFragment_to_WelcomeFragment"
+            app:destination="@id/WelcomeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/WelcomeFragment"

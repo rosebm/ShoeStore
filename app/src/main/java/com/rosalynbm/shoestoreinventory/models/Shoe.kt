@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class Shoe(@PrimaryKey
                 var id: Int,
                 var name: String,
-                var size: Double,
+                var size: Int,
                 var company: String,
                 var description: String)

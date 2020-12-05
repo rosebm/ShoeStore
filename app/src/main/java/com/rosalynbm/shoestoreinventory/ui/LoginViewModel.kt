@@ -3,7 +3,6 @@ package com.rosalynbm.shoestoreinventory.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.rosalynbm.shoestoreinventory.business.UserUseCase
 import com.rosalynbm.shoestoreinventory.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -32,7 +31,7 @@ class LoginViewModel(private val repository: UserUseCase): ViewModel() {
                 userSavedLiveData.postValue(true)
                 Timber.d("Success on saveUser")
             }, {
-                Timber.d("Error on saveUser")
+                Timber.d("Error on saveUser ${it.message}")
             }))
     }
 
@@ -48,17 +47,7 @@ class LoginViewModel(private val repository: UserUseCase): ViewModel() {
             .subscribe({
                 userValidatedLiveData.postValue((pass == it.password))
             },{
-                Timber.d("Error on userFound")
+                Timber.d("Error on userFound: ${it.message}")
             }))
-    }
-}
-
-class LoginViewModelFactory(private val repository: UserUseCase) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return LoginViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

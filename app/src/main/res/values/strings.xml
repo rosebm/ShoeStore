@@ -28,4 +28,5 @@
     <string name="welcome_title_text">Shoeland</string>
     <string name="welcome_description_text">Welcome to Shoeland! here you can add and consult a list of shoes</string>
     <string name="welcome_image_description">image containing shoes</string>
+    <string name="menu_text">Menu</string>
 </resources>
