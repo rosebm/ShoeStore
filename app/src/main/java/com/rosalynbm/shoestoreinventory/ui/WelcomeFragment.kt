@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.rosalynbm.shoestoreinventory.R
@@ -20,16 +21,16 @@ class WelcomeFragment: Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_welcome, container, false)
+        val binding: FragmentWelcomeBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_welcome, container, false)
+        fragmentWelcomeBinding = binding
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val binding = FragmentWelcomeBinding.bind(view)
-        fragmentWelcomeBinding = binding
-
-        binding.welcomeBtn.setOnClickListener(this)
+        fragmentWelcomeBinding?.welcomeBtn?.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.rosalynbm.shoestoreinventory.R
@@ -19,16 +20,16 @@ class InstructionFragment: Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_instruction, container, false)
+        val binding: FragmentInstructionBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_instruction, container, false)
+        fragmentInstructionBinding = binding
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val binding = FragmentInstructionBinding.bind(view)
-        fragmentInstructionBinding = binding
-
-        binding.instructionBtn.setOnClickListener(this)
+        fragmentInstructionBinding?.instructionBtn?.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {

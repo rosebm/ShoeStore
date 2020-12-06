@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -29,6 +30,7 @@ class ShoeListFragment: Fragment(), ListItemClickListener<Shoe>{
         super.onAttach(context)
         shoeRepository = ShoeUseCase(AppDatabase.getDatabase(context).getShoeDao())
         shoeListViewModel = ShoeListViewModel(shoeRepository)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,16 +47,17 @@ class ShoeListFragment: Fragment(), ListItemClickListener<Shoe>{
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_shoe_list, container, false)
+        val binding: FragmentShoeListBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_shoe_list, container, false)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
         setHasOptionsMenu(true)
-        return view
+        fragmentShoeListBinding = binding
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val binding = FragmentShoeListBinding.bind(view)
-        fragmentShoeListBinding = binding
 
         initShoeListAdapter()
         shoeListViewModel.getShoeList()
@@ -63,8 +66,21 @@ class ShoeListFragment: Fragment(), ListItemClickListener<Shoe>{
             shoeListViewModel.getShoesListAdapter().submitList(it)
         })
 
-        binding.floatingButton.setOnClickListener {
+        fragmentShoeListBinding?.floatingButton?.setOnClickListener {
             Navigation.findNavController(floating_button).navigate(R.id.ShoeDetailFragment)
+        }
+
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_setting -> {
+                    Navigation.findNavController(toolbar).navigate(R.id.LoginFragment)
+                    true
+                }
+                else -> {
+                    Navigation.findNavController(toolbar).navigate(R.id.LoginFragment)
+                    true
+                }
+            }
         }
     }
 

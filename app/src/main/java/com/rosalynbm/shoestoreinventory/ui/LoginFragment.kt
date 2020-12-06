@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -35,28 +36,29 @@ class LoginFragment: Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+
+        val binding: FragmentLoginBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_login, container, false)
+        fragmentLoginBinding = binding
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentLoginBinding.bind(view)
-        fragmentLoginBinding = binding
-
         Timber.plant(Timber.DebugTree())
 
-        binding.loginBtn.setOnClickListener(this)
-        binding.registerBtn.setOnClickListener(this)
+        fragmentLoginBinding?.loginBtn?.setOnClickListener(this)
+        fragmentLoginBinding?.registerBtn?.setOnClickListener(this)
 
         loginViewModel.onUserSaved().observe(viewLifecycleOwner, Observer { userSaved ->
             if (userSaved)
-                Navigation.findNavController(binding.registerBtn).navigate(R.id.WelcomeFragment)
+                fragmentLoginBinding?.registerBtn?.let { Navigation.findNavController(it).navigate(R.id.WelcomeFragment) }
         })
 
         loginViewModel.onUserValidated().observe(viewLifecycleOwner, Observer { userValidated ->
             if (userValidated)
-                Navigation.findNavController(binding.loginBtn).navigate(R.id.WelcomeFragment)
+                fragmentLoginBinding?.loginBtn?.let { Navigation.findNavController(it).navigate(R.id.WelcomeFragment) }
             else
                 Toast.makeText(requireContext(), "Wrong user or password", Toast.LENGTH_SHORT)
                     .show()

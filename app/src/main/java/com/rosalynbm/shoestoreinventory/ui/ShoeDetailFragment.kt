@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.rosalynbm.shoestoreinventory.R
@@ -31,18 +33,21 @@ class ShoeDetailFragment: Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_shoe_detail, container, false)
+        val binding: FragmentShoeDetailBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_shoe_detail, container, false)
+        fragmentShoeDetailBinding = binding
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentShoeDetailBinding.bind(view)
-        binding.viewmodel = shoeListViewModel
-        fragmentShoeDetailBinding = binding
-
-        binding.saveBtn.setOnClickListener(this)
-        binding.cancelBtn.setOnClickListener(this)
+        fragmentShoeDetailBinding?.let {
+            it.viewmodel = shoeListViewModel
+            it.saveBtn.setOnClickListener(this)
+            it.cancelBtn.setOnClickListener(this)
+        }
 
         shoeListViewModel.getShoeName()
     }
@@ -54,6 +59,11 @@ class ShoeDetailFragment: Fragment(), View.OnClickListener {
         }
     }
 
+    /**
+     * Save the shoe in local db, if one of the fields is null or empty, it won't
+     * save the info
+     *
+     */
     private fun saveShoe() {
         val name = shoe_name_et.text.toString()
         val company = shoe_company_et.text.toString()
@@ -62,10 +72,13 @@ class ShoeDetailFragment: Fragment(), View.OnClickListener {
             size = shoe_size_et.text.toString().toDouble()
         val description = shoe_description_et.text.toString()
 
-        if (name.isBlank().not() &&
-            company.isBlank().not() &&
-            size > 0 && description.isBlank().not())
+        if (!name.isNullOrEmpty().not() &&
+            company.isNullOrEmpty().not() &&
+            size > 0 &&
+            description.isNullOrEmpty().not())
             shoeListViewModel.insertShoeToList()
+        else
+            Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_LONG).show()
 
         Navigation.findNavController(save_btn).navigateUp()
     }
