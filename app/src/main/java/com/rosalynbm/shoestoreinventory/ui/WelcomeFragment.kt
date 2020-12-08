@@ -1,9 +1,7 @@
 package com.rosalynbm.shoestoreinventory.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -25,6 +23,8 @@ class WelcomeFragment: Fragment(), View.OnClickListener {
             R.layout.fragment_welcome, container, false)
         fragmentWelcomeBinding = binding
 
+        // To control the option menu from Fragment, the setHasOptionsMenu has to be called
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -48,6 +48,12 @@ class WelcomeFragment: Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity?)?.supportActionBar?.hide()
+        (activity as AppCompatActivity?)?.supportActionBar?.show()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.findItem(R.id.menu_setting).isVisible = false
+    }
+
 }

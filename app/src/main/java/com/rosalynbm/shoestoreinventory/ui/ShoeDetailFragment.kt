@@ -72,7 +72,7 @@ class ShoeDetailFragment: Fragment(), View.OnClickListener {
             size = shoe_size_et.text.toString().toDouble()
         val description = shoe_description_et.text.toString()
 
-        if (!name.isNullOrEmpty().not() &&
+        if (name.isNullOrEmpty().not() &&
             company.isNullOrEmpty().not() &&
             size > 0 &&
             description.isNullOrEmpty().not())

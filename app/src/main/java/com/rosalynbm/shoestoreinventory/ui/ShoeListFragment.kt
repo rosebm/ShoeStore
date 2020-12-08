@@ -40,6 +40,8 @@ class ShoeListFragment: Fragment(), ListItemClickListener<Shoe>{
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             // Handle the back button event
         }
+
+
     }
 
     override fun onCreateView(
@@ -49,8 +51,8 @@ class ShoeListFragment: Fragment(), ListItemClickListener<Shoe>{
     ): View? {
         val binding: FragmentShoeListBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_shoe_list, container, false)
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
         setHasOptionsMenu(true)
+
         fragmentShoeListBinding = binding
 
         return binding.root
@@ -70,18 +72,6 @@ class ShoeListFragment: Fragment(), ListItemClickListener<Shoe>{
             Navigation.findNavController(floating_button).navigate(R.id.ShoeDetailFragment)
         }
 
-        toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.menu_setting -> {
-                    Navigation.findNavController(toolbar).navigate(R.id.LoginFragment)
-                    true
-                }
-                else -> {
-                    Navigation.findNavController(toolbar).navigate(R.id.LoginFragment)
-                    true
-                }
-            }
-        }
     }
 
     private fun initShoeListAdapter() {
@@ -105,10 +95,14 @@ class ShoeListFragment: Fragment(), ListItemClickListener<Shoe>{
 
     override fun onResume() {
         super.onResume()
+        (activity as AppCompatActivity?)?.supportActionBar?.setHomeButtonEnabled(false)
+        (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         (activity as AppCompatActivity?)?.supportActionBar?.show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+
         inflater.inflate(R.menu.menus, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }

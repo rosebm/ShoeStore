@@ -29,6 +29,7 @@ class LoginFragment: Fragment(), View.OnClickListener {
         super.onAttach(context)
         userRepository = UserUseCase(AppDatabase.getDatabase(context).getUserDao())
         loginViewModel = LoginViewModel(userRepository)
+
     }
 
     override fun onCreateView(
@@ -37,9 +38,12 @@ class LoginFragment: Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentLoginBinding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_login, container, false)
+        val binding: FragmentLoginBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_login, container, false
+        )
         fragmentLoginBinding = binding
+
         return binding.root
     }
 
@@ -53,12 +57,16 @@ class LoginFragment: Fragment(), View.OnClickListener {
 
         loginViewModel.onUserSaved().observe(viewLifecycleOwner, Observer { userSaved ->
             if (userSaved)
-                fragmentLoginBinding?.registerBtn?.let { Navigation.findNavController(it).navigate(R.id.WelcomeFragment) }
+                fragmentLoginBinding?.registerBtn?.let {
+                    Navigation.findNavController(it).navigate(R.id.WelcomeFragment)
+                }
         })
 
         loginViewModel.onUserValidated().observe(viewLifecycleOwner, Observer { userValidated ->
             if (userValidated)
-                fragmentLoginBinding?.loginBtn?.let { Navigation.findNavController(it).navigate(R.id.WelcomeFragment) }
+                fragmentLoginBinding?.loginBtn?.let {
+                    Navigation.findNavController(it).navigate(R.id.WelcomeFragment)
+                }
             else
                 Toast.makeText(requireContext(), "Wrong user or password", Toast.LENGTH_SHORT)
                     .show()
