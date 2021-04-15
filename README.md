@@ -1,25 +1,23 @@
 # README 
 
-# Project Title
+# Project Shoes Store
 
-Project Shoes Store
+Basic app for creating and listing shoes items
 
 ## Getting Started
 
 Download the project and run it on a device or emulator with at least Marshmallow Android version (6.0), nothing else needed
 
-## About
+## Project Instructions
 
-This is a basic app that allows the user to save different Points Of Interests that would like to keep for future references, the saved places will be display in a list and once a poi is selected, the user will be taken to a details screen for a brief explanation about the place.
+Deliverables for this project.
 
-## Deliverables for this project.
+1. Login screen: you have to create first a user account that will be saved on local db (ONLY for this project purpose)
+2. Welcome onboarding screen
+3. Instructions onboarding screen
+4. Shoe Listing screen: at first, the list will be empty, items must be added on the Shoe Detail Screen
+5. Shoe Detail screen for adding a new shoe
 
-- Ability to login and keep a session through Google or Email
-- Main activity hosting the fragments, with Android Navigation Controller for Fragment-based navigation
-- Bundle to store data passed between Fragments
-- Usage of ConstraintLayout
-- Data listed with RecyclerView
-- Couple basic animations with MotionLayout
-- Retrofit usage to connect Google Places API, download data and store it on local with Room
-- Coil library for images loading
-- Permission required for map usage
+## Sources
+
+1. Images from dsw.com, https://www.dailymail.co.uk/https://www.dailymail.co.uk/health/article-4957232/Why-not-wear-high-heels-work-out.html
